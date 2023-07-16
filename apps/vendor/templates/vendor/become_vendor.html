@@ -159,31 +159,28 @@
   <div class="container">
     <div class="title">Become a Vendor</div>
     <div class="content">
-      <form method="post" action=".">
+      <form method="post" action="." enctype="multipart/form-data">
         {% csrf_token %}
         
         <div class="user-details">
-          <!-- {% for fields in form %} -->
+          {% for fields in form %}
           
             {% for field in fields %}
             <div class="input-box">
               
               <span class="details">
-                {% if fields.name == 'password2' %}
-                  Confirm Password
+                {% if fields.name == 'username' %}
+                  User Name
+                  {% elif fields.name == 'password1' %}
+                  Password
                   {% else %}
-                  {{ fields.name }}
+                  Confirm Password
                 {% endif %}
               </span>
               {{ field }}
-              <!-- <input type="text"  placeholder="Enter your name" required> -->
             </div>
             {% endfor %}
-          <!-- {% endfor %} -->
-          <!-- <div class="input-box">
-            <span class="details">User Name</span>
-            <input type="text" name="user_name" placeholder="Enter your name" required>
-          </div> -->
+          {% endfor %}
 
           <div class="input-box">
             <span class="details">Shop Name</span>
