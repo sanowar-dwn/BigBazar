@@ -5,12 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>Wolmart - Marketplace HTML5 Template</title>
-
-    <meta name="keywords" content="Marketplace ecommerce responsive HTML5 Template" />
-    <meta name="description"
-        content="Wolmart is powerful marketplace &amp; ecommerce responsive Html5 Template.">
-    <meta name="author" content="D-THEMES">
+    <title>BigBazar Multivendor</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'assets/images/icons/favicon.png' %}">
@@ -56,7 +51,7 @@
             <div class="header-top">
                 <div class="container">
                     <div class="header-left">
-                        <p class="welcome-msg">Welcome to Wolmart Store message or remove it!</p>
+                        <p class="welcome-msg">Welcome to BigBazar!</p>
                     </div>
                     <div class="header-right">
                         <div class="dropdown">
@@ -92,7 +87,7 @@
                         <a href="assets/ajax/login.html" class="d-lg-show login sign-in"><i
                                 class="w-icon-account"></i>Sign In</a>
                         <span class="delimiter d-lg-show">/</span>
-                        <a href="assets/ajax/login.html" class="ml-0 d-lg-show login register">Register</a>
+                        <a href="{% url 'become_vendor' %}" class="ml-0 d-lg-show ">Register</a>
                     </div>
                 </div>
             </div>
