@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.utils.text import slugify
 from .models import Vendor
+from .forms import ProductForm
 
 # Create your views here.
-
 def become_vendor(request):
+    return render(request, 'vendor/become_a_vendor.html')
+
+def vendor_registration(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
 
@@ -30,4 +35,31 @@ def become_vendor(request):
     else:
         form = UserCreationForm()
 
-    return render(request, 'vendor/become_vendor.html', {'form':form})
+    return render(request, 'vendor/vendor_registration.html', {'form':form})
+
+@login_required
+def vendor_admin(request):
+    vendor = request.user.vendor
+    
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.vendor = request.user.vendor
+            product.slug = slugify(product.name)
+            product.save()
+            return redirect('vendor_admin')
+    else:
+        form = ProductForm()  
+
+    context = {'vendor': vendor, 'form': form}
+    return render(request, 'vendor/vendor_admin.html', context)
+
+
+
+
+def all_vendors(request):
+    all_vendors = Vendor.objects.all()
+    return render(request, 'vendor/all_vendors.html', {'all_vendors':all_vendors})
+

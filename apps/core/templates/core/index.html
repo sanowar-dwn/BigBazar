@@ -81,13 +81,18 @@
                         </div>
                         <!-- End of Dropdown Menu -->
                         <span class="divider d-lg-show"></span>
-                        <a href="blog.html" class="d-lg-show">Blog</a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'vendor_admin' %}" class="ml-0 d-lg-show ">Vendor Admin</a>
+                        {% else %}    
+                            <a href="{% url 'become_vendor' %}" class="ml-0 d-lg-show ">Become a Vendor</a>
+                        {% endif %}
+
                         <a href="contact-us.html" class="d-lg-show">Contact Us</a>
                         <a href="my-account.html" class="d-lg-show">My Account</a>
                         <a href="assets/ajax/login.html" class="d-lg-show login sign-in"><i
                                 class="w-icon-account"></i>Sign In</a>
-                        <span class="delimiter d-lg-show">/</span>
-                        <a href="{% url 'become_vendor' %}" class="ml-0 d-lg-show ">Register</a>
+                        <span class="delimiter d-lg-show">/</span>   
+                        <a href="{% url 'vendor_registration' %}" class="ml-0 d-lg-show ">Register</a>
                     </div>
                 </div>
             </div>
@@ -687,30 +692,7 @@
                                         <!-- End of Megamenu -->
                                     </li>
                                     <li>
-                                        <a href="vendor-dokan-store.html">Vendor</a>
-                                        <ul>
-                                            <li>
-                                                <a href="vendor-dokan-store-list.html">Store Listing</a>
-                                                <ul>
-                                                    <li><a href="vendor-dokan-store-list.html">Store listing 1</a></li>
-                                                    <li><a href="vendor-wcfm-store-list.html">Store listing 2</a></li>
-                                                    <li><a href="vendor-wcmp-store-list.html">Store listing 3</a></li>
-                                                    <li><a href="vendor-wc-store-list.html">Store listing 4</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="vendor-dokan-store.html">Vendor Store</a>
-                                                <ul>
-                                                    <li><a href="vendor-dokan-store.html">Vendor Store 1</a></li>
-                                                    <li><a href="vendor-wcfm-store-product-grid.html">Vendor Store 2</a>
-                                                    </li>
-                                                    <li><a href="vendor-wcmp-store-product-grid.html">Vendor Store 3</a>
-                                                    </li>
-                                                    <li><a href="vendor-wc-store-product-grid.html">Vendor Store 4</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
+                                        <a href="{% url 'all_vendors' %}">Vendor</a>
                                     </li>
                                     <li>
                                         <a href="blog.html">Blog</a>
